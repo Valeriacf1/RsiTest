@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Lista de empleados</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'home' %}" class="btn btn-link text-primary">
+            <img src="{% static 'icon/home.png' %}" alt="Home Image">
+        </a>
+        <h2 class="text-center mt-2">Lista de empleados</h2>
+
+        <div class="col-md-12 text-end mt-3"> 
+           <a href="{% url 'add_employee' %}" class="btn btn-primary mt-1">Agregar</a>
+            
+           <a href="#" data-toggle="modal" data-target="#confirmDeleteModal" class="btn btn-danger mt-1" id="deleteButton">Eliminar</a>
+        </div>
+     
+        <div id="employeeList">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Orden</th>
+                        <th scope="col"># Empleado</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellidos</th>
+                        <th scope="col">Fecha de Ingreso</th>
+                        <th scope="col">Antiguedad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for employee in employees %}
+                        <tr>
+                            <th scope="row">{{ forloop.counter }}</th>
+                            <td>{{ employee.employnumber }}</td>
+                            <td>{{ employee.name }}</td>
+                            <td>{{ employee.surnames }}</td>
+                            <td>{{ employee.date_of_entry }}</td>
+                            <td>{{ employee.days_of_service }} días</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar eliminación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Selecciona el empleado a eliminar</p>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col"># Empleado</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Apellidos</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for employee in employees %}
+                                <tr>
+                                    <th>{{employee.employnumber}} </th>
+                                    <td>{{ employee.name }}</td>
+                                    <td>{{ employee.surnames }}</td>
+                                    <td>
+                                        <a href="{% url 'remove_employee' employee.id %}" class="btn btn-danger">Eliminar</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        
+        $('#deleteButton').click(function() {
+           
+            var deleteLink = $(this).attr('href');
+            
+           
+            $('#confirmDeleteButton').attr('href', deleteLink);
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

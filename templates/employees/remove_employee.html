@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Confirmar Eliminación</title>
+    <link href="{% static 'css/bootstrap.min.css'%}" rel="stylesheet" >
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+</head>
+<body>
+    <div class="container text-center mt-5">
+        <h2 class="text-center ">Confirmar Eliminación</h2>
+        <p>¿Estás seguro de que deseas eliminar al empleado {{ employee.name }} {{ employee.surnames }}?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a href="{% url 'list_employee' %}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>
