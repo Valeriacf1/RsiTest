@@ -21,7 +21,6 @@ def add_employee(request):
                 messages.error(request, 'El numero de empleado ya existe. Por favor, elige otro numero.')
             else:
                 form.save()
-                messages.success(request, 'Empleado agregado exitosamente.')
                 return redirect('list_employee')
     else:
         form = EmployeeForm()

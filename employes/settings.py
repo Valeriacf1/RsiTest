@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,6 +26,7 @@ SECRET_KEY = 'django-insecure-3!gu7dv+yc1^tx57+!gca7r)grgsm1o(fiqspk+*t(=a+q*n98
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+#ALLOWED_HOSTS = ['4ac8-2806-290-881e-482e-df0-43-92ad-7ae4.ngrok-free.app']
 ALLOWED_HOSTS = []
 
 
@@ -78,10 +80,22 @@ WSGI_APPLICATION = 'employes.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dbemployees',
+        'USER': 'postgres',
+        'PASSWORD': 'lrs1997as!',
+        'HOST': '172.17.0.2',  # O la dirección IP del contenedor de PostgreSQL
+        'PORT': '5432',  # El puerto por defecto de PostgreSQL
     }
 }
+
+
+#DATABASES = {
+#   'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
 
 
 # Password validation
