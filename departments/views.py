@@ -6,6 +6,7 @@ from .forms import DepartmentForm
 # Create your views here.
 def departmentlist(request):
     departments = Department.objects.all()
+    print(departments)
     return render(request, 'deparments/department.html', {'departments': departments})
 
 def add_department(request):

@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Lista de empleados</title>
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">  
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 </head>
@@ -55,8 +57,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar eliminación</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                    <button type="button" class=" d-flex justify-content-center text-center close-btn" data-dismiss="modal" aria-label="Close">
+                        {% comment %} <span aria-hidden="true">x</span> {% endcomment %}
+                        {% comment %} <i class="fa-solid fa-xmark"></i> {% endcomment %}
+                        <i class="gg-close"></i>
                     </button>
                 </div>
                 <div class="modal-body">

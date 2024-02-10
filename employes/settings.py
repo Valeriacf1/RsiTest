@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-3!gu7dv+yc1^tx57+!gca7r)grgsm1o(fiqspk+*t(=a+q*n98
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#ALLOWED_HOSTS = ['4ac8-2806-290-881e-482e-df0-43-92ad-7ae4.ngrok-free.app']
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['4ac8-2806-290-881e-482e-df0-43-92ad-7ae4.ngrok-free.app']
+#ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -42,6 +42,28 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+LOGGING = {
+    'version': 1,
+    'filters': {
+        'require_debug_true': {
+            '()': 'django.utils.log.RequireDebugTrue',
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'filters': ['require_debug_true'],
+            'class': 'logging.StreamHandler',
+        }
+    },
+    'loggers': {
+        'django.db.backends': {
+            'level': 'DEBUG',
+            'handlers': ['console'],
+        }
+    }
+}
 
 MIDDLEWARE = [
    
