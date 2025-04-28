@@ -42,3 +42,6 @@ def remove_employee(request, employee_id):
 
 #def employeelist(request):
  #   return render(request, 'listEmployee.html')
+
+
+ # Esta es una nueva función que implementaremos
